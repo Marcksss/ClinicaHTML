@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nuevo Reporte Médico</title>
+</head>
+<body>
+<form action="/reportes/insertar" method="post">
+Institución / Médico: <input type="text" name="institucion"><br>
+Datos del paciente: <textarea name="datosPaciente"></textarea><br>
+Fecha y lugar: <input type="text" name="fechaLugar"><br>
+Motivo de consulta: <textarea name="motivoConsulta"></textarea><br>
+Antecedentes: <textarea name="antecedentes"></textarea><br>
+Examen físico: <textarea name="examenFisico"></textarea><br>
+Exámenes auxiliares: <textarea name="examenesAuxiliares"></textarea><br>
+Diagnóstico: <textarea name="diagnostico"></textarea><br>
+Tratamiento: <textarea name="tratamiento"></textarea><br>
+Evolución: <textarea name="evolucion"></textarea><br>
+Recomendaciones: <textarea name="recomendaciones"></textarea><br>
+Conclusión: <textarea name="conclusion"></textarea><br>
+Firma del médico: <input type="text" name="firmaMedico"><br>
+<input type="submit" value="Insertar">
+</form>
+</body>
+</html>
