@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Edición de Reporte Médico</title>
+</head>
+<body>
+<form action="/reportes/actualizar" method="post">
+ID: <input type="text" name="id" th:value="${reporte.id}" readonly="readonly"><br>
+Institución / Médico: <input type="text" name="institucion" th:value="${reporte.institucion}"><br>
+Datos del paciente: <textarea name="datosPaciente" th:text="${reporte.datosPaciente}"></textarea><br>
+Fecha y lugar: <input type="text" name="fechaLugar" th:value="${reporte.fechaLugar}"><br>
+Motivo de consulta: <textarea name="motivoConsulta" th:text="${reporte.motivoConsulta}"></textarea><br>
+Antecedentes: <textarea name="antecedentes" th:text="${reporte.antecedentes}"></textarea><br>
+Examen físico: <textarea name="examenFisico" th:text="${reporte.examenFisico}"></textarea><br>
+Exámenes auxiliares: <textarea name="examenesAuxiliares" th:text="${reporte.examenesAuxiliares}"></textarea><br>
+Diagnóstico: <textarea name="diagnostico" th:text="${reporte.diagnostico}"></textarea><br>
+Tratamiento: <textarea name="tratamiento" th:text="${reporte.tratamiento}"></textarea><br>
+Evolución: <textarea name="evolucion" th:text="${reporte.evolucion}"></textarea><br>
+Recomendaciones: <textarea name="recomendaciones" th:text="${reporte.recomendaciones}"></textarea><br>
+Conclusión: <textarea name="conclusion" th:text="${reporte.conclusion}"></textarea><br>
+Firma del médico: <input type="text" name="firmaMedico" th:value="${reporte.firmaMedico}"><br>
+<input type="submit" value="Actualizar">
+</form>
+
+<br>
+<form action="/reportes/pdf" method="get" target="_blank">
+  <input type="hidden" name="id" th:value="${reporte.id}">
+  <input type="submit" value="PDF">
+</form>
+</body>
+</html>
