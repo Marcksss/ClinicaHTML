@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reportes Médicos</title>
+</head>
+<body>
+<form action="/reportes/buscar" method="get">
+Buscar por paciente: <input type="text" name="cadena">
+<input type="submit" value="Buscar">
+</form>
+<br><br>
+
+<table border="1">
+<tr th:each="rep: ${listaReportes}">
+  <td th:text="${rep.id}"></td>
+  <td th:text="${rep.datosPaciente}"></td>
+  <td th:text="${rep.fechaLugar}"></td>
+  <td>
+    <form action="/reportes/edicion" method="get">
+      <input type="hidden" name="id" th:value="${rep.id}">
+      <input type="submit" value="Editar">
+    </form>
+  </td>
+  <td>
+    <form action="/reportes/eliminar" method="post">
+      <input type="hidden" name="id" th:value="${rep.id}">
+      <input type="submit" value="Eliminar">
+    </form>
+  </td>
+  <td>
+    <form action="/reportes/pdf" method="get" target="_blank">
+      <input type="hidden" name="id" th:value="${rep.id}">
+      <input type="submit" value="PDF">
+    </form>
+  </td>
+</tr>
+</table>
+
+</body>
+</html>
