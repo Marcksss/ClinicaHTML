@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Hospitales - Consulta de Medicamentos</title>
+  <style>
+    /* Estilo base: limpio, moderno, clínico */
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f4f8fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #0066cc;
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      text-shadow: 0 0 6px rgba(0, 255, 128, 0.4); /* toque sutil hacker */
+    }
+
+    header p {
+      margin: 5px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08), 0 0 12px rgba(0,255,128,0.07); /* leve glow verde */
+      border: 1px solid #e0eaf1;
+    }
+
+    h2 {
+      color: #0066cc;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 600;
+      text-shadow: 0 0 4px rgba(0,230,118,0.3);
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fdfdfd;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]::placeholder {
+      color: #888;
+    }
+
+    input[type="text"]:focus {
+      border-color: #00b050; /* verde clínico */
+      box-shadow: 0 0 6px rgba(0,176,80,0.5);
+      outline: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      background: linear-gradient(90deg, #0066cc, #004c99);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #004c99, #0066cc);
+      box-shadow: 0 0 10px rgba(0,255,128,0.3);
+      transform: translateY(-1px);
+    }
+
+    .card {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f9fbfd;
+      border: 1px solid #d9e7f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #0066cc;
+      border-bottom: 1px solid #cce0f5;
+      padding-bottom: 8px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .field b {
+      color: #00b050; /* verde sutil estilo hacker */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏥 Sistema de Hospitales</h1>
+    <p>Consulta de Medicamentos (usando openFDA)</p>
+  </header>
+  
+  <main>
+    <h2>🔍 Buscar Medicamento</h2>
+    <input type="text" id="medicamento" placeholder="Ejemplo: ibuprofen">
+    <button onclick="buscar()">Buscar</button>
+    
+    <div id="resultado"></div>
+  </main>
+
+  <script>
+    async function buscar() {
+      const query = document.getElementById("medicamento").value.trim();
+      const resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML = "<p><i>Buscando...</i></p>";
+
+      if (!query) {
+        resultadoDiv.innerHTML = "<p style='color:#d32f2f;'>⚠️ Por favor ingresa un nombre de medicamento.</p>";
+        return;
+      }
+
+      try {
+        const url = `https://api.fda.gov/drug/label.json?search=${query}&limit=1`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+          resultadoDiv.innerHTML = "<p style='color:#d32f2f;'>❌ No se encontró información del medicamento.</p>";
+          return;
+        }
+
+        const med = data.results[0];
+
+        resultadoDiv.innerHTML = `
+          <div class="card">
+            <h3>Resultados para: ${query}</h3>
+            <div class="field"><b>Propósito:</b> ${med.purpose ? med.purpose[0] : "No disponible"}</div>
+            <div class="field"><b>Ingrediente Activo:</b> ${med.active_ingredient ? med.active_ingredient[0] : "No disponible"}</div>
+            <div class="field"><b>Usos:</b> ${med.indications_and_usage ? med.indications_and_usage[0] : "No disponible"}</div>
+            <div class="field"><b>Advertencias:</b> ${med.warnings ? med.warnings[0].substring(0,200) + "..." : "No disponible"}</div>
+          </div>
+        `;
+      } catch (error) {
+        resultadoDiv.innerHTML = "<p style='color:#d32f2f;'>⚠️ Error al consultar la API.</p>";
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
