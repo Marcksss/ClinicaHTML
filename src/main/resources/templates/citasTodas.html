@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Citas Médicas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.1)),
-                    url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
-        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f4f8fb, #e9eef4);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -19,71 +17,65 @@
     }
 
     form {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 1.5rem 2rem;
-        border-radius: 12px;
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
+        background: #ffffff;
+        padding: 1.8rem 2rem;
+        border-radius: 14px;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+        max-width: 650px;
         width: 100%;
         margin-bottom: 2rem;
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
     }
 
     form:hover {
-        transform: scale(1.03);
-        box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
     }
 
     label {
         display: block;
-        font-weight: 700;
-        color: #34495e;
+        font-weight: 600;
+        color: #2c3e50;
         margin-bottom: 0.5rem;
         text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     input[type="text"] {
         width: 100%;
-        padding: 12px 15px;
+        padding: 12px 14px;
         margin-bottom: 1rem;
-        border: 2px solid #ccc;
+        border: 2px solid #d1d9e6;
         border-radius: 8px;
         font-size: 1rem;
-        background: #f9f9f9;
+        background: #f9fbfd;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     input[type="text"]:focus {
         border-color: #3498db;
-        box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
         outline: none;
         background: #fff;
-        animation: glowInput 0.5s ease-in-out;
-    }
-
-    @keyframes glowInput {
-        0% { box-shadow: 0 0 8px rgba(52, 152, 219, 0.4); }
-        100% { box-shadow: 0 0 10px rgba(52, 152, 219, 0.8); }
     }
 
     input[type="submit"] {
         width: 100%;
         padding: 12px;
-        background: linear-gradient(90deg, #3498db, #2980b9);
+        background: linear-gradient(90deg, #3498db, #2c80b4);
         color: white;
         border: none;
         border-radius: 8px;
-        font-weight: bold;
-        font-size: 1.1rem;
+        font-weight: 600;
+        font-size: 1rem;
         cursor: pointer;
-        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        transition: all 0.3s ease;
     }
 
     input[type="submit"]:hover {
-        background: linear-gradient(90deg, #2980b9, #1f618d);
+        background: linear-gradient(90deg, #2c80b4, #1f618d);
         transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
+        box-shadow: 0 0 12px rgba(52, 152, 219, 0.5);
     }
 
     input[type="submit"]:active {
@@ -94,24 +86,40 @@
         width: 100%;
         max-width: 1000px;
         border-collapse: collapse;
-        background: white;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        background: #ffffff;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
         border-radius: 12px;
         overflow: hidden;
+        animation: fadeIn 0.5s ease-in;
     }
 
-    table th, table td {
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    table th {
+        background: #3498db;
+        color: white;
         padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #ccc;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 600;
+    }
+
+    table td {
+        padding: 1rem;
+        border-bottom: 1px solid #e0e6ed;
+        color: #34495e;
     }
 
     table tr:nth-child(even) {
-        background: #f2f6fc;
+        background: #f7fbff;
     }
 
     table tr:hover {
-        background: #eaf2fb;
+        background: #eaf4ff;
+        transition: background 0.3s ease;
     }
 
     td form {
@@ -119,14 +127,63 @@
         padding: 0;
         box-shadow: none;
         background: none;
+        display: inline-block;
     }
 
     td input[type="submit"] {
         width: auto;
-        padding: 6px 12px;
-        font-size: 0.95rem;
+        padding: 6px 14px;
+        font-size: 0.9rem;
         border-radius: 6px;
         margin: 0 5px;
+        font-weight: 500;
+        border: none;
+        color: white;
+        transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    td input[value="Editar"] {
+        background: #27ae60;
+    }
+
+    td input[value="Editar"]:hover {
+        background: #219150;
+        transform: scale(1.08);
+    }
+
+    td input[value="Eliminar"] {
+        background: #e74c3c;
+    }
+
+    td input[value="Eliminar"]:hover {
+        background: #c0392b;
+        transform: scale(1.08);
+    }
+
+    .text-center {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-primary {
+        color: #3498db;
+        border: 2px solid #3498db;
+        background: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background: #3498db;
+        color: white;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
     }
   </style>
 </head>
@@ -139,29 +196,40 @@
   </form>
 
   <table>
-    <tr th:each="cita: ${listaCitas}">
-      <td th:text="${cita.id}"></td>
-      <td th:text="${cita.nombre}"></td>
-      <td th:text="${cita.apellido}"></td>
-      <td th:text="${cita.fechaInicioSintomas}"></td>
-      <td>
-        <form action="/citas/edicion" method="get">
-          <input type="hidden" name="id" th:value="${cita.id}">
-          <input type="submit" value="Editar">
-        </form>
-      </td>
-      <td>
-        <form action="/citas/eliminar" method="post">
-          <input type="hidden" name="id" th:value="${cita.id}">
-          <input type="submit" value="Eliminar">
-        </form>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha de Síntomas</th>
+        <th colspan="2" style="text-align:center;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="cita: ${listaCitas}">
+        <td th:text="${cita.id}"></td>
+        <td th:text="${cita.nombre}"></td>
+        <td th:text="${cita.apellido}"></td>
+        <td th:text="${cita.fechaInicioSintomas}"></td>
+        <td>
+          <form action="/citas/edicion" method="get">
+            <input type="hidden" name="id" th:value="${cita.id}">
+            <input type="submit" value="Editar">
+          </form>
+        </td>
+        <td>
+          <form action="/citas/eliminar" method="post">
+            <input type="hidden" name="id" th:value="${cita.id}">
+            <input type="submit" value="Eliminar">
+          </form>
+        </td>
+      </tr>
+    </tbody>
   </table>
 
+  <div class="text-center">
+    <a href="/MenuAdmin.html" class="btn btn-outline-primary">Volver al Menú</a>
+  </div>
 
-  <!-- Botón de Login al final -->
-  <div class="text-center mt-4">
-    <a href="/MenuAdmin.html" class="btn btn-outline-primary">volver al Menu</a>
 </body>
 </html>
