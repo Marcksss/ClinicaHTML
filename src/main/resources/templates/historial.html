@@ -2,144 +2,172 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Trámites</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>Historial Médico - Centro Médico N & A S.A.C.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.1)),
-                    url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png');
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem;
-        margin: 0;
-        min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background: #f4f6f8;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 1.9em;
     }
 
     form {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 1.5rem 2rem;
-        border-radius: 12px;
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        width: 100%;
-        margin-bottom: 2rem;
-        transition: transform 0.3s ease-in-out;
+      background: #ffffff;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      border: 1px solid #dcdcdc;
+      transition: box-shadow 0.3s ease;
     }
 
     form:hover {
-        transform: scale(1.03);
-        box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     label {
-        display: block;
-        font-weight: 700;
-        color: #34495e;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
+      display: block;
+      font-weight: 600;
+      color: #34495e;
+      margin-bottom: 0.5rem;
     }
 
     input[type="text"] {
-        width: 100%;
-        padding: 12px 15px;
-        margin-bottom: 1rem;
-        border: 2px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-        background: #f9f9f9;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     input[type="text"]:focus {
-        border-color: #3498db;
-        box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
-        outline: none;
-        background: #fff;
-        animation: glowInput 0.5s ease-in-out;
-    }
-
-    @keyframes glowInput {
-        0% { box-shadow: 0 0 8px rgba(52, 152, 219, 0.4); }
-        100% { box-shadow: 0 0 10px rgba(52, 152, 219, 0.8); }
+      border-color: #5dade2;
+      box-shadow: 0 0 5px rgba(93, 173, 226, 0.4);
+      outline: none;
+      background: #fff;
     }
 
     input[type="submit"] {
-        width: 100%;
-        padding: 12px;
-        background: linear-gradient(90deg, #3498db, #2980b9);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
     }
 
     input[type="submit"]:hover {
-        background: linear-gradient(90deg, #2980b9, #1f618d);
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
-    }
-
-    input[type="submit"]:active {
-        transform: scale(1);
+      background: #2e86c1;
     }
 
     table {
-        width: 100%;
-        max-width: 1000px;
-        border-collapse: collapse;
-        background: white;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        border-radius: 12px;
-        overflow: hidden;
+      width: 100%;
+      max-width: 1100px;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #dcdcdc;
     }
 
-    table th, table td {
-        padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #ccc;
+    th, td {
+      padding: 0.9rem;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 0.95rem;
     }
 
-    table tr:nth-child(even) {
-        background: #f2f6fc;
+    th {
+      background: #f2f4f7;
+      color: #2c3e50;
+      font-weight: 600;
     }
 
-    table tr:hover {
-        background: #eaf2fb;
+    tr:nth-child(even) {
+      background: #f9fbfc;
+    }
+
+    tr:hover td {
+      background: #f1f8ff;
     }
 
     td form {
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        background: none;
+      margin: 0;
+      background: none;
+      box-shadow: none;
+      padding: 0;
     }
 
     td input[type="submit"] {
-        width: auto;
-        padding: 6px 12px;
-        font-size: 0.95rem;
-        border-radius: 6px;
-        margin: 0 5px;
+      width: auto;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    td input[type="submit"][value="Editar"] {
+      background: #5dade2;
+      color: white;
+    }
+
+    td input[type="submit"][value="Editar"]:hover {
+      background: #3498db;
+    }
+
+    td input[type="submit"][value="Eliminar"] {
+      background: #e74c3c;
+      color: white;
+    }
+
+    td input[type="submit"][value="Eliminar"]:hover {
+      background: #c0392b;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; font-size: 14px; }
+      table { font-size: 13px; }
     }
   </style>
 </head>
 <body>
 
+  <h1>Historial Médico</h1>
+
   <!-- Formulario de búsqueda -->
   <form action="/tramites/buscar" method="get">
-    <label>Historial Medico introduzca nombre del paciente:</label>
+    <label>Introduzca el nombre del paciente:</label>
     <input type="text" name="cadena" placeholder="Ingrese el nombre del atendido">
     <input type="submit" value="Buscar">
   </form>
 
-  <!-- Tabla de resultados solo si hay resultados -->
+  <!-- Tabla de resultados -->
   <table th:if="${listaTramites != null and #lists.isNotEmpty(listaTramites)}">
     <tr>
       <th>ID</th>
