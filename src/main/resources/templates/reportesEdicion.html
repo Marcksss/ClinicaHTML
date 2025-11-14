@@ -1,32 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Edición de Reporte Médico</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f5f7;
+        margin: 0;
+        padding: 20px;
+    }
+
+    form {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 6px;
+        max-width: 700px;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        font-size: 14px;
+        background: #fafafa;
+    }
+
+    textarea {
+        height: 80px;
+        resize: vertical;
+    }
+
+    input[readonly] {
+        background: #e9e9e9;
+    }
+
+    input[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 18px;
+        background: #4a4a4a;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    input[type="submit"]:hover {
+        background: #3a3a3a;
+    }
+
+    .pdf-form {
+        text-align: center;
+    }
+
+    .pdf-btn {
+        background: #5c5c5c;
+    }
+</style>
 </head>
+
 <body>
+
 <form action="/reportes/actualizar" method="post">
-ID: <input type="text" name="id" th:value="${reporte.id}" readonly="readonly"><br>
-Institución / Médico: <input type="text" name="institucion" th:value="${reporte.institucion}"><br>
-Datos del paciente: <textarea name="datosPaciente" th:text="${reporte.datosPaciente}"></textarea><br>
-Fecha y lugar: <input type="text" name="fechaLugar" th:value="${reporte.fechaLugar}"><br>
-Motivo de consulta: <textarea name="motivoConsulta" th:text="${reporte.motivoConsulta}"></textarea><br>
-Antecedentes: <textarea name="antecedentes" th:text="${reporte.antecedentes}"></textarea><br>
-Examen físico: <textarea name="examenFisico" th:text="${reporte.examenFisico}"></textarea><br>
-Exámenes auxiliares: <textarea name="examenesAuxiliares" th:text="${reporte.examenesAuxiliares}"></textarea><br>
-Diagnóstico: <textarea name="diagnostico" th:text="${reporte.diagnostico}"></textarea><br>
-Tratamiento: <textarea name="tratamiento" th:text="${reporte.tratamiento}"></textarea><br>
-Evolución: <textarea name="evolucion" th:text="${reporte.evolucion}"></textarea><br>
-Recomendaciones: <textarea name="recomendaciones" th:text="${reporte.recomendaciones}"></textarea><br>
-Conclusión: <textarea name="conclusion" th:text="${reporte.conclusion}"></textarea><br>
-Firma del médico: <input type="text" name="firmaMedico" th:value="${reporte.firmaMedico}"><br>
-<input type="submit" value="Actualizar">
+    <label>ID:</label>
+    <input type="text" name="id" th:value="${reporte.id}" readonly="readonly">
+
+    <label>Institución / Médico:</label>
+    <input type="text" name="institucion" th:value="${reporte.institucion}">
+
+    <label>Datos del paciente:</label>
+    <textarea name="datosPaciente" th:text="${reporte.datosPaciente}"></textarea>
+
+    <label>Fecha y lugar:</label>
+    <input type="text" name="fechaLugar" th:value="${reporte.fechaLugar}">
+
+    <label>Motivo de consulta:</label>
+    <textarea name="motivoConsulta" th:text="${reporte.motivoConsulta}"></textarea>
+
+    <label>Antecedentes:</label>
+    <textarea name="antecedentes" th:text="${reporte.antecedentes}"></textarea>
+
+    <label>Examen físico:</label>
+    <textarea name="examenFisico" th:text="${reporte.examenFisico}"></textarea>
+
+    <label>Exámenes auxiliares:</label>
+    <textarea name="examenesAuxiliares" th:text="${reporte.examenesAuxiliares}"></textarea>
+
+    <label>Diagnóstico:</label>
+    <textarea name="diagnostico" th:text="${reporte.diagnostico}"></textarea>
+
+    <label>Tratamiento:</label>
+    <textarea name="tratamiento" th:text="${reporte.tratamiento}"></textarea>
+
+    <label>Evolución:</label>
+    <textarea name="evolucion" th:text="${reporte.evolucion}"></textarea>
+
+    <label>Recomendaciones:</label>
+    <textarea name="recomendaciones" th:text="${reporte.recomendaciones}"></textarea>
+
+    <label>Conclusión:</label>
+    <textarea name="conclusion" th:text="${reporte.conclusion}"></textarea>
+
+    <label>Firma del médico:</label>
+    <input type="text" name="firmaMedico" th:value="${reporte.firmaMedico}">
+
+    <input type="submit" value="Actualizar">
 </form>
 
-<br>
-<form action="/reportes/pdf" method="get" target="_blank">
-  <input type="hidden" name="id" th:value="${reporte.id}">
-  <input type="submit" value="PDF">
+<form action="/reportes/pdf" method="get" target="_blank" class="pdf-form">
+    <input type="hidden" name="id" th:value="${reporte.id}">
+    <input type="submit" value="PDF" class="pdf-btn">
 </form>
+
 </body>
 </html>
